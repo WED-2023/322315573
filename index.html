@@ -3,6 +3,23 @@
 <head>
 <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
+<script>
+  function sendEmail(event) {
+    event.preventDefault();
+
+    const senderEmail = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    const smiley = document.getElementById('smiley').value;
+
+    const subject = `פנייה מהאתר מאת: ${senderEmail}`;
+    const body = `${message}\n\nחייכן שנבחר: ${smiley}\n\nכתובת המייל של השולח: ${senderEmail}`;
+
+    const mailtoLink = `mailto:noam18020@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailtoLink;
+  }
+</script>
+
 <body>
   <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" 
@@ -51,7 +68,7 @@
   <h2>My Playlist</h2>
   <iframe width="560" height="315" src="https://www.youtube.com/embed/INvVIHU87Wo?si=nrvh2n_XhyetWur_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><br/>
   <section id="like" class="section">
-    <h2>תני לי לייק 💙</h2>
+    <h2>תנו לי לייק 💙</h2>
     <div class="fb-like" 
          data-width="" 
          data-layout="standard" 
@@ -62,76 +79,44 @@
   </section>
   
 
-<section id="qrcoder" class="section">
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-scan my code
-<br/>
-<br/>
-<br/>
-</section>
+  <section id="qrcoder" class="section">
+    <h2>סרקו את הקוד כדי להגיע לאתר שלי</h2>
+    <img src="images/qr-code.png" alt="QR Code לאתר" width="200">
+  </section>
 
-<section id="spa" class="section">
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-ans
-<br/>
-<br/>
-<br/>
-</section>
-
-<section id="contact" class="section">
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-contact me
-<br/>
-<br/>
-<br/>
-</section>
-
-
+  <section id="spa" class="section">
+    <h2>שאלה 1: הבדלים עיקריים בין Web1, Web2 ו-Web3</h2>
+    <p><strong>1. אופי השימוש:</strong> ב־Web1 המשתמשים יכלו רק לקרוא מידע. אלו היו אתרים סטטיים ללא אפשרות תגובה או השתתפות. ב־Web2 נוספה אפשרות כתיבה – המשתמשים יצרו תוכן בעצמם. ב־Web3 מתווספת גם בעלות על התוכן והנתונים באמצעות טכנולוגיות מבוזרות.</p>
+    <p><strong>2. שליטה במידע:</strong> ב־Web1 השליטה הייתה בידי בעלי האתרים בלבד. ב־Web2 המשתמשים יצרו תוכן, אך הפלטפורמות שלטו בו. ב־Web3 השליטה חוזרת למשתמשים עצמם בעזרת טכנולוגיות כמו בלוקצ’יין.</p>
+    <p><strong>3. טכנולוגיה מרכזית:</strong> Web1 נשען על HTML בסיסי. Web2 על טכנולוגיות אינטראקטיביות כמו JavaScript ו-AJAX. Web3 מבוסס על בלוקצ’יין, חוזים חכמים ואפליקציות מבוזרות.</p>
+  
+    <h2>שאלה 2: הסבר על ההבדלים באמצעות תרחיש שימוש</h2>
+    <p><strong>Web1:</strong> המשתמש מחפש "תופעות לוואי של תרופות" ומגיע לדף סטטי באתר רפואי. אין אינטראקציה, רק טקסט קבוע שנכתב ע"י מומחים.</p>
+    <p><strong>Web2:</strong> המשתמש מקבל תוצאות חיפוש מפורומים, בלוגים וסרטונים ביוטיוב. הוא יכול לקרוא תגובות של אחרים, לשאול שאלות ולתרום מידע – אבל הפלטפורמה שולטת בכל.</p>
+    <p><strong>Web3:</strong> המשתמש גולש לאפליקציה מבוזרת שבה משתמשים משתפים מידע רפואי באופן אנונימי ומאומת. כל תרומה מתוגמלת בטוקנים, הנתונים מאוחסנים בבלוקצ’יין ואינם ניתנים למחיקה או צנזורה.</p>
+  </section>
+  
+  <section id="contact" class="section">
+    <h2>צור קשר</h2>
+    <form id="contactForm" onsubmit="sendEmail(event)">
+      <label for="email">כתובת המייל שלך:</label><br>
+      <input type="email" id="email" name="email" required><br><br>
+  
+      <label for="message">הודעה:</label><br>
+      <textarea id="message" name="message" rows="5" required></textarea><br><br>
+  
+      <label for="smiley">בחר חייכן:</label><br>
+      <select id="smiley" name="smiley">
+        <option value="😊">😊 שמח</option>
+        <option value="😢">😢 עצוב</option>
+        <option value="😠">😠 כועס</option>
+        <option value="😍">😍 אוהב</option>
+      </select><br><br>
+  
+      <button type="submit">שלח</button>
+    </form>
+  </section>
+  
 <script type="text/javascript">
 $(function(){
   $("#nav a").click(function(e){
